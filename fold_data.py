@@ -18,6 +18,9 @@ def partition(pred, iterable):
     t1, t2 = tee(iterable)
     return filterfalse(pred, t1), filter(pred, t2)
 
+def partition_by_class(data):
+    return partition(lambda row: row[-1] == 'no', data)
+
 def stratifold(nfold, *classes):
     folds = [[] for _ in range(nfold)]
     # deals out data to each fold in a circle
@@ -25,12 +28,14 @@ def stratifold(nfold, *classes):
         fold.append(data)
     return folds
 
-
 if __name__ == '__main__':
     args = command_line_args()
-    folds = stratifold(args.nfold, *partition(lambda row: row[-1] == 'no', reader(args.infile)))
+
+    folds = stratifold(args.nfold, *partition_by_class( reader(args.infile) ))
+
     with open(args.outfile, 'w') as out:
         with redirect_stdout(out):
+
             for n, fold in enumerate(folds, start=1):
                 print(f'fold{n}')
                 print('\n'.join(','.join(row) for row in fold), end='\n\n')
