@@ -1,6 +1,29 @@
 Accuracy of Simple Classifiers
 ==============================
 
+Data
+----
+
+Attributes
+
+1. Number of times pregnant
+2. Plasma glucose concentration a 2 hours in an oral glucose tolerance test
+3. Diastolic blood pressure (mm Hg)
+4. Triceps skin fold thickness (mm)
+5. 2-Hour serum insulin (mu U/ml)
+6. Body mass index (weight in kg/(height in m)^2)
+7. Diabetes pedigree function
+8. Age (years)
+9. Class variable ("yes" or "no")
+
+Selected Attributes
+
+1. Plasma glucose concentration a 2 hours in an oral glucose tolerance test
+2. 2-Hour serum insulin (mu U/ml)
+3. Body mass index (weight in kg/(height in m)^2)
+4. Diabetes pedigree function
+5. Age (years)
+
 Classifier Accuracy
 -------------------
 
