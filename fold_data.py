@@ -10,12 +10,13 @@ def command_line_args():
     clargs.add_argument('--outfile', '-o', help='destination file')
     clargs.add_argument('--nfold', '-n', type=int, default=10, help='number of folds')
     clargs = clargs.parse_args()
+    # default value for outfile
     if clargs.outfile is None:
         clargs.outfile = splitext(clargs.infile.name)[0] + '-folds.csv'
     return clargs
 
 def partition(pred, iterable):
-   'Use a predicate to partition entries into false entries and true entries' 
+    'Use a predicate to partition entries into false entries and true entries' 
     t1, t2 = tee(iterable)
     return filterfalse(pred, t1), filter(pred, t2)
 
@@ -35,6 +36,7 @@ if __name__ == '__main__':
 
     folds = stratifold(args.nfold, *partition_by_class( reader(args.infile) ))
 
+    # output folds into outfile
     with open(args.outfile, 'w') as out:
         with redirect_stdout(out):
 
