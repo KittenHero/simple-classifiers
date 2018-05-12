@@ -24,8 +24,10 @@ Selected Attributes
 4. Diabetes pedigree function
 5. Age (years)
 
-Classifier Accuracy
--------------------
+Results
+-------
+
+### Classifier Accuracy
 
 | Numeric Data         | ZeroR     | 1R        | 1NN       | 5NN       | NB        | MLP       | SVM       | RF        | MyNB      |
 |----------------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
@@ -37,7 +39,7 @@ Classifier Accuracy
 | No feature selection | 75 %        | 75.3906 % | xx.xxxx % |
 | CFS                  | 80.0781 %   | 79.5573 % |           |
 
-### Decision Trees
+### Decision Tree Diagrams
 
 #### Weka Unpruned DT
 
