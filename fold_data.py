@@ -15,6 +15,7 @@ def command_line_args():
     return clargs
 
 def partition(pred, iterable):
+   'Use a predicate to partition entries into false entries and true entries' 
     t1, t2 = tee(iterable)
     return filterfalse(pred, t1), filter(pred, t2)
 
@@ -22,6 +23,7 @@ def partition_by_class(data):
     return partition(lambda row: row[-1] == 'no', data)
 
 def stratifold(nfold, *classes):
+    'create nfold folds with data stratified by classes'
     folds = [[] for _ in range(nfold)]
     # deals out data to each fold in a circle
     for data, fold in zip(chain.from_iterable(classes), cycle(folds)):
