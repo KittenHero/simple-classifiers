@@ -1,5 +1,6 @@
 from argparse import ArgumentParser
 from gaussian_bayes import GaussianNaiveBayes
+from decision_tree import DecisionTree
 from csv import reader
 
 def parse_args():
@@ -12,6 +13,8 @@ def parse_args():
 def classify(model, training, test):
     if model == 'NB':
         model = GaussianNaiveBayes
+    if model == 'DT':
+        model = DecisionTree
 
     model = model(reader(training))
     return model.classify_many(*reader(test))
