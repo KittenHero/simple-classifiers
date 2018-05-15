@@ -36,8 +36,8 @@ Results
 
 | Nominal Data         | DT unpruned | DT pruned |  MyDT     |
 |----------------------|-------------|-----------|-----------|
-| No feature selection | 75 %        | 75.3906 % | xx.xxxx % |
-| CFS                  | 80.0781 %   | 79.5573 % |           |
+| No feature selection | 75 %        | 75.3906 % | 82.1615 % |
+| CFS                  | 80.0781 %   | 79.5573 % | 80.3385 % |
 
 ### Decision Tree Diagrams
 
