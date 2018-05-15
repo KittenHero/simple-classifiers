@@ -41,12 +41,13 @@ class LeafNode:
         return self.label
 
 class InnerNode:
-    def __init__(self, attr):
+    def __init__(self, attr, default):
         self.attr = attr
+        self.default = LeafNode(default)
         self.children = {}
 
     def classify(self, point):
-        return self.children[self.attr(point)].classify(point)
+        return self.children.get(self.attr(point), self.default).classify(point)
 
 
 class DecisionTree:
@@ -88,7 +89,7 @@ def DT_builder(data, attr, default):
     best = min(attr, key=lambda at: split_entropy(itemgetter(at), data))
     attr.remove(best)
     best = itemgetter(best)
-    subtree = InnerNode(best)
+    subtree = InnerNode(best, data_mode)
     data.sort(key=best)
     for key, subgroup in groupby(data, best):
         subtree.children[key] = DT_builder(subgroup, list(attr), data_mode)
