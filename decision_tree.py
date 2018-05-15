@@ -47,8 +47,20 @@ class InnerNode:
         self.children = {}
 
     def classify(self, point):
-        return self.children.get(self.attr(point), self.default).classify(point)
+        return self.children.get(point[self.attr], self.default).classify(point)
 
+def strfy_node(node, depth=0, base=''):
+    if isinstance(node, LeafNode):
+        return '{}: {}'.format(base, node.label)
+    padding = '|    '*depth
+    depth += 1
+    return '{}\n{}'.format(
+        base,
+        '\n'.join(
+            strfy_node(child, depth, '{}{} = {}'.format(padding, node.attr, key))
+            for key, child in node.children.items()
+        )
+    )
 
 class DecisionTree:
     def __init__(self, data):
@@ -66,6 +78,9 @@ class DecisionTree:
 
     def classify_many(self, *points):
         return map(self.tree.classify, points)
+
+    def __str__(self):
+        return strfy_node(self.tree)
 
 def DT_builder(data, attr, default):
     '''construct a subtree node from data
@@ -88,9 +103,18 @@ def DT_builder(data, attr, default):
     # choose attribute based on max information gain
     best = min(attr, key=lambda at: split_entropy(itemgetter(at), data))
     attr.remove(best)
-    best = itemgetter(best)
     subtree = InnerNode(best, data_mode)
+    best = itemgetter(best)
     data.sort(key=best)
     for key, subgroup in groupby(data, best):
         subtree.children[key] = DT_builder(subgroup, list(attr), data_mode)
     return subtree
+
+
+
+if __name__ == '__main__':
+    from argparse import ArgumentParser
+    from csv import reader
+    arg = ArgumentParser()
+    arg.add_argument('datafile', type=open, help='CSV file containing data to build the decision tree')
+    print(DecisionTree(reader(arg.parse_args().datafile)))
