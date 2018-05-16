@@ -1,8 +1,14 @@
-Accuracy of Simple Classifiers
-==============================
+% Title:	Accuracy of Simple Classifiers
+% Authors: 460251747
+% Date:	May 28, 2018
+
+Aim
+----
+In this study, we applied 12 different machine learning algorithms to a medical dataset using weka to predict whether a patient will be tested positive for diabetes or not. In addition, we implemented a naive bayes and decision tree algorithms and compare those against weka implementations. Finally to preprocess the data we used correlation-based feature selection (CFS) which selects the most relevant attributes of the data. Each algorithm was ran both with and without using CFS. The accuracy of each algorithm for predicting diabetes was measured and the most accurate algorithm will the suggested. This study is important because it will suggest the best algorithm to be used on more medical related data sets.
 
 Data
 ----
+The data used for this project comes from the National Institute of Diabetes and Digestive Kidney Diseases in the United States. The data contains 768 instances (each one representing a patient), each with eight different attributes. These ones are described below .
 
 Attributes
 
@@ -16,6 +22,8 @@ Attributes
 8. Age (years)
 9. Class variable ("yes" or "no")
 
+The Correlation-based feature selection (CFS) selects a subset of attributes which are deemed the most relevant by a heuristic. This heuristic considers how good the individual attributes are at predicting if a patient will be tested positive for diabetes and how much each attribute correlates to the other attributes. In other words, the heuristic selects features which are highly correlated with testing positive for diabetes or not but are uncorrelated with each other. The following were the attributes selected by the CFS method.
+
 Selected Attributes
 
 1. Plasma glucose concentration a 2 hours in an oral glucose tolerance test
@@ -24,7 +32,7 @@ Selected Attributes
 4. Diabetes pedigree function
 5. Age (years)
 
-Results
+Results and discussion
 -------
 
 ### Classifier Accuracy
@@ -36,8 +44,8 @@ Results
 
 | Nominal Data         | DT unpruned | DT pruned |  MyDT     |
 |----------------------|-------------|-----------|-----------|
-| No feature selection | 75 %        | 75.3906 % | 82.1615 % |
-| CFS                  | 80.0781 %   | 79.5573 % | 80.3385 % |
+| No feature selection | 75 %        | 75.3906 % | 82.1615  %|
+| CFS                  | 80.0781 %   | 79.5573 % | 80.3385 % |           |
 
 ### Decision Tree Diagrams
 
@@ -386,7 +394,6 @@ Plasma glucose concentration a 2 hours in an oral glucose tolerance test = very 
 ```
 
 ### MyDT - CFS
-
 ```
 Plasma glucose concentration a 2 hours in an oral glucose tolerance test = 'very high'
 |    2-Hour serum insulin = high
@@ -474,3 +481,22 @@ Plasma glucose concentration a 2 hours in an oral glucose tolerance test = mediu
 |    |    |    |    2-Hour serum insulin = low: no
 |    |    |    Diabetes pedigree function = low: no
 ```
+Firstly, the effect of the feature selection (CFS) for each algorithm will be discussed below:
+
++ The first thing to note is that  there was no effect on the accuracy of ZeroR and IR algorithms by firstly doing a feature selection. ZeroR wasn’t affected by CFS because it ignores all features except the target (which is whether a patient has diabetes or not). 1R wasn’t affected by CFS because this one selects the attribute which has the highest predictability (and creates a rule based on that attribute). This one is the same attribute for both before and after CFS.
+
++ 1NN was affected by CFS due to the fact that the nearest neighbor of a data point changes whenever an attribute is removed. This is regardless of the distance heuristic used to classify the points. Also, 5NN wasn’t affected by CFS possibly due to the fact that it uses the 5 closest points instead of the closest one which reduces the effect of the reduction of attributes.
+
++ Naive Bayes calculates the probability of all attributes given that the data Both Weka and our implementation of Naive Bayes was affected by CFS due to the fact it calculates the probability of the all the attributes given that a person was tested positive (or negative) for Diabetes.
+
++ Both Weka’s and our implementation of decision trees were affected by CFS. This can be explained due to the fact that the tree is build by taking all attributes into consideration. Having a smallest set of attributes would produce a different decision tree.
+
++ There was also a minimal effect of pruning on the accuracy of the decision trees. Also, the decision trees accuracy was notoriously high compared to the other algorithms, suggesting that there was overfitting. WHY WOULDN”T PRUNNING AFFECT MUCH THE ACCURACY ?
+DISCUSS THE REST OF THE ALGORITHMS (MLP, SVM, RF)
+
+Conclusion
+----
+The most appropriate machine learning algorithm for this data set is naive bayes. This is due to its high accuracy compared to the other algorithms and its low likelihood of overfitting the data. Also, note that the CFS selected attributes have low correlation between each other. for example, plasma glucose concentration isn’t related to the body mass index. This might explain why naive bayes is so accurate. Additionally, the difference between out implementation and Weka implementation of naive bayes could be due to the difference in breaking the ties.
+
+Reflection
+----
