@@ -112,6 +112,39 @@ Results and discussion
 |   |    Body mass index = low: no (42.0/1.0)
 ```
 
+### Weka Unpruned DT CFS
+
+```
+Plasma glucose concentration a 2 hours in an oral glucose tolerance test = high
+|    Body mass index = high
+|   |    Age = high: yes (82.0/31.0)
+|   |    Age = low: no (50.0/21.0)
+|    Body mass index = low: no (29.0/4.0)
+Plasma glucose concentration a 2 hours in an oral glucose tolerance test = low
+|    Body mass index = high
+|   |    2-Hour serum insulin = high
+|   |   |    Age = high
+|   |   |   |    Diabetes pedigree function = high: yes (7.0/3.0)
+|   |   |   |    Diabetes pedigree function = low: no (28.0/4.0)
+|   |   |    Age = low: no (43.0/4.0)
+|   |    2-Hour serum insulin = low: no (48.0/2.0)
+|    Body mass index = low: no (66.0)
+Plasma glucose concentration a 2 hours in an oral glucose tolerance test = very high
+|    2-Hour serum insulin = high
+|   |    Body mass index = high: yes (103.0/16.0)
+|   |    Body mass index = low
+|   |   |    Age = high: yes (12.0/3.0)
+|   |   |    Age = low: no (4.0/1.0)
+|    2-Hour serum insulin = low: no (3.0/1.0)
+Plasma glucose concentration a 2 hours in an oral glucose tolerance test = medium
+|    Age = high
+|   |    Body mass index = high
+|   |   |    Diabetes pedigree function = high: yes (37.0/10.0)
+|   |   |    Diabetes pedigree function = low: no (80.0/33.0)
+|   |    Body mass index = low: no (30.0/3.0)
+|    Age = low: no (146.0/17.0)
+```
+
 ### Weka Pruned DT
 
 ```
@@ -123,6 +156,25 @@ Results and discussion
  Plasma glucose concentration a 2 hours in an oral glucose tolerance test = low: no (192.0/14.0)
  Plasma glucose concentration a 2 hours in an oral glucose tolerance test = very high: yes (122.0/24.0)
  Plasma glucose concentration a 2 hours in an oral glucose tolerance test = medium
+|    Age = high
+|   |    Body mass index = high
+|   |   |    Diabetes pedigree function = high: yes (37.0/10.0)
+|   |   |    Diabetes pedigree function = low: no (80.0/33.0)
+|   |    Body mass index = low: no (30.0/3.0)
+|    Age = low: no (146.0/17.0)
+```
+
+### Weka Pruned DT CFS
+
+```
+Plasma glucose concentration a 2 hours in an oral glucose tolerance test = high
+|    Body mass index = high
+|   |    Age = high: yes (82.0/31.0)
+|   |    Age = low: no (50.0/21.0)
+|    Body mass index = low: no (29.0/4.0)
+Plasma glucose concentration a 2 hours in an oral glucose tolerance test = low: no (192.0/14.0)
+Plasma glucose concentration a 2 hours in an oral glucose tolerance test = very high: yes (122.0/24.0)
+Plasma glucose concentration a 2 hours in an oral glucose tolerance test = medium
 |    Age = high
 |   |    Body mass index = high
 |   |   |    Diabetes pedigree function = high: yes (37.0/10.0)
