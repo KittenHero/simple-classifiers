@@ -22,10 +22,10 @@ def cross_validatation_accuracy(n_folds, data, model):
     return correct / total
 
 if __name__ == '__main__':
-    numeric = reader(open('pima.csv'))
-    numeric_CFS = reader(open('pima-CFS.csv'))
-    discrete = reader(open('pima-discretised.csv'))
-    discrete_CFS = reader(open('pima-discretised-CFS.csv'))
+    numeric = reader(open('../pima.csv'))
+    numeric_CFS = reader(open('../pima-CFS.csv'))
+    discrete = reader(open('../pima-discretised.csv'))
+    discrete_CFS = reader(open('../pima-discretised-CFS.csv'))
 
     nb_acc = partial(cross_validatation_accuracy, 10, model=GaussianNaiveBayes)
     dt_acc = partial(cross_validatation_accuracy, 10, model=DecisionTree)

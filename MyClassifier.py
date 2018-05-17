@@ -1,6 +1,5 @@
 from argparse import ArgumentParser
-from gaussian_bayes import GaussianNaiveBayes
-from decision_tree import DecisionTree
+from MyML import DecisionTree, GaussianNaiveBayes
 from csv import reader
 
 def parse_args():
