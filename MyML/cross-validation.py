@@ -18,7 +18,7 @@ def cross_validatation_accuracy(n_folds, data, model):
         train_data = chain(*folds[:i], *folds[i:])
         classifier = model(train_data)
         total += len(test_data)
-        correct += sum(p[-1] == classifier.classify(p[:-1]) for p in test_data)
+        correct += sum(label == classifier.classify(data) for *data, label in test_data)
     return correct / total
 
 if __name__ == '__main__':
